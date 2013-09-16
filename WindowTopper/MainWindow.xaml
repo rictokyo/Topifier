@@ -1,0 +1,53 @@
+﻿<Window x:Class="Topifier.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        Title="Window Topifier" Height="350" Width="525" MinHeight="350" MinWidth="525"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:Topifier.Properties" 
+        xmlns:system="clr-namespace:System;assembly=mscorlib" 
+        xmlns:windowTopper="clr-namespace:Topifier"
+        mc:Ignorable="d" 
+        Icon="Resources\App.ico"  
+        d:DataContext="{d:DesignInstance Type=windowTopper:MainWindowViewModelSample, IsDesignTimeCreatable=True}">
+
+    <Window.Resources>        
+        <windowTopper:DefaultWindowHandler x:Key="defaultHandler"/>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <windowTopper:MainWindowViewModel Handler="{StaticResource defaultHandler}" />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="30" />
+            <RowDefinition/>
+            <RowDefinition Height="40" />
+
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.ColumnSpan="4" Text="{Binding AppWindowTitle, Mode=TwoWay}" />
+
+        <ListView 
+                  Grid.Row="1" Grid.ColumnSpan="4"                   
+                  ItemsSource="{Binding ProcessList}" SelectedItem="{Binding SelectedProcess, Mode=TwoWay}">
+        </ListView>
+
+        <Button Grid.Row="2" Content="{x:Static properties:Resources.SetOnTop}" Command="{Binding SetOnTopCommand}" />
+        <Button Grid.Row="2" Grid.Column="1" Content="{x:Static properties:Resources.SetUnTop}" Command="{Binding SetOffTopCommand}" />
+        <Button Grid.Row="2" Grid.Column="2" Content="{x:Static properties:Resources.BringFront}" Command="{Binding BringToFrontCommand}"/>
+        <Button Grid.Row="2" Grid.Column="3" Content="{x:Static properties:Resources.RefreshProcesses}" Command="{Binding RefreshProcessListCommand}" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Topifier.exe.config
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Topifier.exe
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Topifier.pdb
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.Prism.xml
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Theme\Styles1.baml
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\App.baml
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\MainWindow.g.cs
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\App.g.cs
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier_MarkupCompile.cache
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier_MarkupCompile.lref
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\MainWindow.baml
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.g.resources
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.Properties.Resources.resources
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.csproj.GenerateResource.Cache
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.exe
+C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.pdb
+C:\Users\ricardo.santos\Documents\GitHub\Topifier\WindowTopper\bin\Debug\Topifier.exe.config
