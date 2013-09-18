@@ -3,8 +3,9 @@
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:topifier="clr-namespace:Topifier"
+   xmlns:system="clr-namespace:System;assembly=mscorlib"
    mc:Ignorable="d">
-    
+
     <Style TargetType="ListViewItem">
         <Setter Property="Template">
             <Setter.Value>
@@ -33,12 +34,6 @@
         </Setter>
     </Style>
 
-    <!--<ControlTemplate TargetType="topifier:SpecialTextBox" x:Key="defaultTextBoxTemplate">
-        <Border CornerRadius="6" BorderBrush="SlateGray" BorderThickness="2" Padding="6,2,2,6">
-            <ContentPresenter Content="{TemplateBinding Property=Text}" />
-        </Border>
-    </ControlTemplate>-->
-
     <ControlTemplate TargetType="ListView" x:Key="defaultListViewTemplate">
         <Border CornerRadius="4" BorderBrush="#FF6C82CC" BorderThickness="1" Padding="3" >
             <ScrollViewer>
@@ -55,16 +50,28 @@
 
     </Style>
 
-    <Style TargetType="topifier:SpecialTextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
-        <!--<Setter Property="Template" Value="{StaticResource defaultTextBoxTemplate}"></Setter>-->
+    <Style TargetType="topifier:SpecialTextBox" >
         <Setter Property="Margin" Value="10,5,10,5"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>       
     </Style>
+
+    <DataTemplate x:Key="defaultListViewItemTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="{Binding ProcessIcon}" Margin="10,3,10,3"></Image>
+            <TextBlock Grid.Column="1" Text="{Binding ProcessWindowTitle}" Margin="10,6,10,3"></TextBlock>
+            
+        </Grid>
+    </DataTemplate>
 
     <Style TargetType="ListView">
         <Setter Property="Margin" Value="20, 5,20,5"/>
+        <Setter Property="ItemTemplate" Value="{StaticResource defaultListViewItemTemplate}"/>
         <Setter Property="Template" Value="{StaticResource defaultListViewTemplate}" />
     </Style>
 

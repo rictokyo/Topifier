@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Topifier
 {
@@ -36,6 +40,60 @@ namespace Topifier
 
         [DllImport("user32.dll")]
         public static extern void GetWindowText(int h, StringBuilder s, int nMaxCount);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr LoadIcon(IntPtr hInstance, IntPtr lpIconName);
+
+        [DllImport("user32.dll", EntryPoint = "GetClassLong")]
+        static extern uint GetClassLong32(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetClassLongPtr")]
+        static extern IntPtr GetClassLong64(IntPtr hWnd, int nIndex);
+
+        /// <summary>
+        /// 64 bit version maybe loses significant 64-bit specific information
+        /// </summary>
+        static IntPtr GetClassLongPtr(IntPtr hWnd, int nIndex)
+        {
+            if (IntPtr.Size == 4)
+                return new IntPtr((long)GetClassLong32(hWnd, nIndex));
+            else
+                return GetClassLong64(hWnd, nIndex);
+        }
+
+
+        static readonly uint WM_GETICON = 0x007f;
+        static readonly IntPtr ICON_SMALL2 = new IntPtr(2);
+        static readonly IntPtr IDI_APPLICATION = new IntPtr(0x7F00);
+        static readonly int GCL_HICON = -14;
+
+        public static Bitmap GetSmallWindowIcon(IntPtr hWnd)
+        {
+            try
+            {
+                IntPtr hIcon = default(IntPtr);
+
+                hIcon = SendMessage(hWnd, WM_GETICON, ICON_SMALL2, IntPtr.Zero);
+
+                if (hIcon == IntPtr.Zero)
+                    hIcon = GetClassLongPtr(hWnd, GCL_HICON);
+
+                if (hIcon == IntPtr.Zero)
+                    hIcon = LoadIcon(IntPtr.Zero, (IntPtr)0x7F00/*IDI_APPLICATION*/);
+
+                if (hIcon != IntPtr.Zero)
+                    return new Bitmap(Icon.FromHandle(hIcon).ToBitmap(), 16, 16);
+                else
+                    return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 
     public abstract class WindowHandler : DependencyObject, IWindowHandler
@@ -77,6 +135,7 @@ namespace Topifier
         public IEnumerable<MyProcess> GetProcesses()
         {
             var processes = Process.GetProcesses();
+
             List<MyProcess> lalista = new List<MyProcess>();
 
             UnSafeMethods.EnumWindows((a, b) =>
@@ -86,10 +145,26 @@ namespace Topifier
                         var stringBuilder = new StringBuilder(255);
                         UnSafeMethods.GetWindowText(a, stringBuilder, stringBuilder.Capacity);
                         string processWindowTitle = stringBuilder.ToString();
-                        
+
                         if (!string.IsNullOrEmpty(processWindowTitle))
                         {
-                            lalista.Add(new MyProcess(processWindowTitle, (IntPtr)a));
+                            var mainWindowHandle = (IntPtr) a;
+
+                            var img = UnSafeMethods.GetSmallWindowIcon(mainWindowHandle);
+                            img.MakeTransparent();
+                            var bitmap = new BitmapImage();
+                            
+                            bitmap.BeginInit();
+                            var memoryStream = new MemoryStream();
+
+                            // Save to a memory stream...
+                            img.Save(memoryStream, ImageFormat.Png);
+                            // Rewind the stream...
+                            memoryStream.Seek(0, SeekOrigin.Begin);
+                            bitmap.StreamSource = memoryStream;
+                            bitmap.EndInit();
+
+                            lalista.Add(new MyProcess(processWindowTitle, mainWindowHandle, bitmap));
                         }
                     }
                     return true;
@@ -97,12 +172,10 @@ namespace Topifier
 
             return lalista;
 
-            //foreach (var process in processes.Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)))
+            //foreach (var process in processes.Where(p=> !string.IsNullOrEmpty(p.MainWindowTitle)))
             //{
-            //    foreach (ProcessThread thread in process.Threads)
-            //    {
-            //    }
-
+            //    //var sb = new StringBuilder(255);
+            //    //UnSafeMethods.GetWindowText(process.MainWindowHandle, sb, sb.Capacity);
             //    yield return new MyProcess(process.MainWindowTitle, process.MainWindowHandle);
             //}
         }

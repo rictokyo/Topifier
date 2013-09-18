@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace Topifier
 {
     public class MainWindowViewModelSample : IMainWindowViewModel
     {
-        static MyProcess myProcess = new MyProcess("Google Chrome", (IntPtr)2);
+        private static readonly BitmapImage sampleIcon = new BitmapImage(new Uri("http://icons.iconarchive.com/icons/google/chrome/16/Google-Chrome-icon.png"));
+
+        static MyProcess myProcess = new MyProcess("Google Chrome", (IntPtr)2, sampleIcon);
 
         public string AppWindowTitle
         {
@@ -19,7 +23,7 @@ namespace Topifier
             {
                 return new[]
             {
-               new MyProcess("Task Manager", default(IntPtr)), myProcess, new MyProcess("Internet Explorer", default(IntPtr))
+               new MyProcess("Task Manager", default(IntPtr), sampleIcon), myProcess, new MyProcess("Internet Explorer", default(IntPtr), sampleIcon)
             };
             }
         }
