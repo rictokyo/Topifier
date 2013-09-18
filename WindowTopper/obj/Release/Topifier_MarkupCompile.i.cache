@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\Ric\Documents\GitHub\Topifier\WindowTopper\obj\Debug\
+C:\Users\Ric\Documents\GitHub\Topifier\WindowTopper\obj\Release\
 Topifier
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Ric\Documents\GitHub\Topifier\WindowTopper\App.xaml
 2333396843
 
-171479481627
+18-1993415073
 20-408393919
 MainWindow.xaml;Theme\Styles1.xaml;
 

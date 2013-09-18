@@ -41,13 +41,19 @@ namespace Topifier.ViewModels
         public ICommand BringToFrontCommand
         {
             get { return _bringToFrontCommand; }
-            set { _bringToFrontCommand = value; OnPropertyChanged(); }
+            set
+            {
+                SetField(ref _bringToFrontCommand, value, () => BringToFrontCommand);
+            }
         }
-        
+
         public ICommand UpdateTitleCommand
         {
             get { return _updateTitleCommand; }
-            set { _updateTitleCommand = value; OnPropertyChanged(); }
+            set
+            {
+                SetField(ref _updateTitleCommand, value, () => UpdateTitleCommand);
+            }
         }
 
         private void SetOnTop()
@@ -82,14 +88,16 @@ namespace Topifier.ViewModels
             if (this.Handler != null)
             {
                 ProcessList = this.Handler.GetProcesses();
-               // if (ProcessList != null) SelectedProcess = ProcessList.FirstOrDefault();
             }
         }
 
         public ICommand RefreshProcessListCommand
         {
             get { return _refreshProcessListCommand; }
-            set { _refreshProcessListCommand = value; OnPropertyChanged(); }
+            set
+            {
+                SetField(ref _refreshProcessListCommand, value, () => RefreshProcessListCommand);
+            }
         }
 
         public IWindowHandler Handler { get; set; }
@@ -99,15 +107,17 @@ namespace Topifier.ViewModels
             get { return _appWindowTitle; }
             set
             {
-                _appWindowTitle = value;
-                OnPropertyChanged();
+                SetField(ref _appWindowTitle, value, () => AppWindowTitle);
             }
         }
 
         public IEnumerable<MyProcess> ProcessList
         {
             get { return _processList; }
-            set { _processList = value; OnPropertyChanged(); }
+            set
+            {
+                SetField(ref _processList, value, () => ProcessList);
+            }
         }
 
         public MyProcess? SelectedProcess
@@ -118,23 +128,27 @@ namespace Topifier.ViewModels
             }
             set
             {
-                _selectedProcess = value;
                 if (_selectedProcess != null) AppWindowTitle = _selectedProcess.Value.ProcessWindowTitle;
-
-                OnPropertyChanged();
+                SetField(ref _selectedProcess, value, () => SelectedProcess);
             }
         }
 
         public ICommand SetOnTopCommand
         {
             get { return _setOnTopCommand; }
-            set { _setOnTopCommand = value; OnPropertyChanged(); }
+            set
+            {
+                SetField(ref _setOnTopCommand, value, () => SetOnTopCommand);
+            }
         }
 
         public ICommand SetOffTopCommand
         {
             get { return _setOffTopCommand; }
-            set { _setOffTopCommand = value; OnPropertyChanged(); }
+            set
+            {
+                SetField(ref _setOffTopCommand, value, () => SetOffTopCommand);
+            }
         }
     }
 }

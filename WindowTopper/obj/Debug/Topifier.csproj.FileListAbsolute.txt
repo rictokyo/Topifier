@@ -23,3 +23,4 @@ C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\Windo
 C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.csproj.GenerateResource.Cache
 C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.exe
 C:\Users\ricardo.santos\documents\visual studio 2012\Projects\WindowTopper\WindowTopper\obj\Debug\Topifier.pdb
+C:\Users\Ric\Documents\GitHub\Topifier\WindowTopper\bin\Debug\Topifier.exe.config
