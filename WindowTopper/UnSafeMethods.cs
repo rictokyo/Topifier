@@ -85,7 +85,7 @@ namespace Topifier
             }
             catch (Exception)
             {
-                return new Bitmap("maka.bmp");
+                return new Bitmap("Noicon.png");
             }
         }
     }

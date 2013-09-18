@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("maka.bmp")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("noicon.bmp")]
 
 
