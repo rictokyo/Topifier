@@ -1,8 +1,8 @@
 ﻿<objects xmlns="http://www.springframework.net">
   
-  <object name="MainWindowViewModel" type="Topifier.MainWindowViewModel, Topifier" >
+  <object name="MainWindowViewModel" type="Topifier.ViewModels.MainWindowViewModel, Topifier" >
     <constructor-arg>
-      <object name="CurrentWindowHandler" type="Topifier.DefaultWindowHandler, Topifier" />
+      <object name="CurrentWindowHandler" type="Topifier.Utils.DefaultWindowHandler, Topifier" />
     </constructor-arg>
   </object>
   

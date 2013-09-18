@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Topifier.Interfaces;
+using Topifier.Structs;
 
-namespace Topifier
+namespace Topifier.ViewModels
 {
     public class MainWindowViewModel : BaseMainWindowViewModel, IMainWindowViewModel
     {

@@ -1,8 +1,7 @@
 using System;
-using System.Drawing;
 using System.Windows.Media.Imaging;
 
-namespace Topifier
+namespace Topifier.Structs
 {
     /// <summary>
     /// The my process.

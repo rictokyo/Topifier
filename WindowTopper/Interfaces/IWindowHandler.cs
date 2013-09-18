@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Topifier.Structs;
 
-namespace Topifier
+namespace Topifier.Interfaces
 {
     public interface IWindowHandler
     {

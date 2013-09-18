@@ -78,13 +78,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BaseMainWindowViewModel.cs" />
-    <Compile Include="IMainWindowViewModel.cs" />
-    <Compile Include="IWindowHandler.cs" />
-    <Compile Include="MyProcess.cs" />
-    <Compile Include="SpecialTextBox.cs" />
-    <Compile Include="UnSafeMethods.cs" />
-    <Compile Include="WindowHandler.cs" />
+    <Compile Include="ViewModels\BaseMainWindowViewModel.cs" />
+    <Compile Include="Interfaces\IMainWindowViewModel.cs" />
+    <Compile Include="Interfaces\IWindowHandler.cs" />
+    <Compile Include="Structs\MyProcess.cs" />
+    <Compile Include="CustomControls\SpecialTextBox.cs" />
+    <Compile Include="Utils\UnSafeMethods.cs" />
+    <Compile Include="Utils\WindowHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,7 +93,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DefaultWindowHandler.cs" />
+    <Compile Include="Utils\DefaultWindowHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,8 +104,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="MainWindowViewModelSample.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="SampleData\MainWindowViewModelSample.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -143,18 +143,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="maka.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Noicon.png">
+    <None Include="Assets\Noicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Noicon.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

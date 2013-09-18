@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Diagnostics;
-
-namespace Topifier
+namespace Topifier.Utils
 {
     public class DefaultWindowHandler : WindowHandler
     {

@@ -3,7 +3,7 @@
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:topifier="clr-namespace:Topifier"
-   xmlns:system="clr-namespace:System;assembly=mscorlib"
+   xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:customControls="clr-namespace:Topifier.CustomControls"
    mc:Ignorable="d">
 
     <Style TargetType="ListViewItem">
@@ -50,7 +50,7 @@
 
     </Style>
 
-    <Style TargetType="topifier:SpecialTextBox" >
+    <Style TargetType="customControls:SpecialTextBox" >
         <Setter Property="Margin" Value="10,5,10,5"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>

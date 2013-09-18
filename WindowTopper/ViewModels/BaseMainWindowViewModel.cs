@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using Topifier.Properties;
 
-namespace Topifier
+namespace Topifier.ViewModels
 {
     public class BaseMainWindowViewModel : DependencyObject, INotifyPropertyChanged
     {

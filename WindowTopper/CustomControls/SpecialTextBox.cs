@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Topifier
+namespace Topifier.CustomControls
 {
     public class SpecialTextBox : TextBox
     {

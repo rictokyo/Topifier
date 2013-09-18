@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Media.Imaging;
+using Topifier.Interfaces;
+using Topifier.Structs;
 
-namespace Topifier
+namespace Topifier.SampleData
 {
     public class MainWindowViewModelSample : IMainWindowViewModel
     {

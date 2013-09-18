@@ -2,9 +2,8 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
-using Topifier.Properties;
 
-namespace Topifier
+namespace Topifier.Utils
 {
     public class UnSafeMethods
     {
@@ -85,7 +84,7 @@ namespace Topifier
             }
             catch (Exception)
             {
-                return new Bitmap("Noicon.png");
+                return new Bitmap(@"Assets\Noicon.png");
             }
         }
     }

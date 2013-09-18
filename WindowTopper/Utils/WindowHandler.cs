@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using Topifier.Interfaces;
+using Topifier.Structs;
 
-namespace Topifier
+namespace Topifier.Utils
 {
     public abstract class WindowHandler : DependencyObject, IWindowHandler
     {

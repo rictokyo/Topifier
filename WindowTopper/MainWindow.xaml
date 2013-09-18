@@ -6,10 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:properties="clr-namespace:Topifier.Properties" 
         xmlns:system="clr-namespace:System;assembly=mscorlib" 
-        xmlns:windowTopper="clr-namespace:Topifier"
+        xmlns:windowTopper="clr-namespace:Topifier" xmlns:sampleData="clr-namespace:Topifier.SampleData"
+        xmlns:customControls="clr-namespace:Topifier.CustomControls"
         mc:Ignorable="d" 
         Icon="Resources\App.ico"  
-        d:DataContext="{d:DesignInstance Type=windowTopper:MainWindowViewModelSample, IsDesignTimeCreatable=True}">
+        d:DataContext="{d:DesignInstance Type=sampleData:MainWindowViewModelSample, IsDesignTimeCreatable=True}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +31,7 @@
 
         </Grid.RowDefinitions>
 
-        <windowTopper:SpecialTextBox IsReadOnly="False" Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding AppWindowTitle, Mode=TwoWay}" />
+        <customControls:SpecialTextBox IsReadOnly="False" Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding AppWindowTitle, Mode=TwoWay}" />
 
         <ListView 
                   Grid.Row="1" Grid.ColumnSpan="4"                 
