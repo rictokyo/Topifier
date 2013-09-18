@@ -8,5 +8,6 @@ namespace Topifier
         IEnumerable<MyProcess> GetProcesses();
         void SetOnTop(IntPtr windowHandle);
         void SetOffTop(IntPtr windowHandle);
+        void BringToFront(IntPtr windowHandle);
     }
 }

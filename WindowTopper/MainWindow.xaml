@@ -11,14 +11,6 @@
         Icon="Resources\App.ico"  
         d:DataContext="{d:DesignInstance Type=windowTopper:MainWindowViewModelSample, IsDesignTimeCreatable=True}">
 
-    <Window.Resources>        
-        <windowTopper:DefaultWindowHandler x:Key="defaultHandler"/>
-    </Window.Resources>
-
-    <Window.DataContext>
-        <windowTopper:MainWindowViewModel Handler="{StaticResource defaultHandler}" />
-    </Window.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
 

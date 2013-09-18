@@ -1,0 +1,13 @@
+﻿<objects xmlns="http://www.springframework.net">
+  
+  <object name="MainWindowViewModel" type="Topifier.MainWindowViewModel, Topifier" >
+    <constructor-arg>
+      <object name="CurrentWindowHandler" type="Topifier.DefaultWindowHandler, Topifier" />
+    </constructor-arg>
+  </object>
+  
+  <object name="MainWindow" type="Topifier.MainWindow, Topifier" >
+    <property name="DataContext" ref="MainWindowViewModel" />
+  </object>
+  
+</objects>

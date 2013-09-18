@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 
@@ -15,8 +14,10 @@ namespace Topifier
         private ICommand _setOffTopCommand;
         private ICommand _bringToFrontCommand;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IWindowHandler windowHandler)
         {
+            Handler = windowHandler;
+
             RefreshProcessListCommand = new DelegateCommand(RefreshProcessList);
             SetOnTopCommand = new DelegateCommand(SetOnTop);
             SetOffTopCommand = new DelegateCommand(SetOffTop);
@@ -61,23 +62,13 @@ namespace Topifier
             }
         }
 
-        public override ICommand RefreshProcessListCommand
+        public ICommand RefreshProcessListCommand
         {
             get { return _refreshProcessListCommand; }
             set { _refreshProcessListCommand = value; OnPropertyChanged(); }
         }
 
-        public static readonly DependencyProperty WindowHandlerProperty = DependencyProperty.Register
-            (
-                "Handler",
-                typeof(WindowHandler),
-                typeof(MainWindowViewModel));
-
-        public WindowHandler Handler
-        {
-            get { return (WindowHandler)GetValue(WindowHandlerProperty); }
-            set { SetValue(WindowHandlerProperty, value); }
-        }
+        public IWindowHandler Handler { get; set; }
 
         public string AppWindowTitle
         {
