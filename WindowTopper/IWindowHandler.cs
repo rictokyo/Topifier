@@ -9,5 +9,6 @@ namespace Topifier
         void SetOnTop(IntPtr windowHandle);
         void SetOffTop(IntPtr windowHandle);
         void BringToFront(IntPtr windowHandle);
+        void UpdateTitle(IntPtr windowHandle, string appWindowTitle);
     }
 }

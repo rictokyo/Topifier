@@ -1,23 +1,45 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows;
 
 namespace Topifier
 {
-    public abstract class WindowHandler : DependencyObject, IWindowHandler
+    public class UnSafeMethods
     {
-        public abstract IEnumerable<MyProcess> GetProcesses();
+        public delegate bool WindowEnumCallback(int hwnd, int lparam);
 
         [DllImport("user32.dll")]
-        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumWindows(WindowEnumCallback lpEnumFunc, int lParam);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr ShowWindow(IntPtr hWnd, int nCmdShow);
+        public static extern IntPtr ShowWindow(IntPtr hWnd, int nCmdShow);
 
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int GetWindowText(IntPtr hWnd, [Out] StringBuilder lpString, int nMaxCount);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowText(IntPtr hWnd, string text);
+
+        [DllImport("user32.dll")]
+        public static extern bool IsWindowVisible(int h);
+
+        [DllImport("user32.dll")]
+        public static extern void GetWindowText(int h, StringBuilder s, int nMaxCount);
+    }
+
+    public abstract class WindowHandler : DependencyObject, IWindowHandler
+    {
         static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         private static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
         private static readonly IntPtr HWND_TOP = new IntPtr(0);
@@ -38,13 +60,51 @@ namespace Topifier
 
         public void BringToFront(IntPtr windowHandle)
         {
-            ShowWindow(windowHandle, 9);
+            UnSafeMethods.ShowWindow(windowHandle, 9);
             SetWindow(windowHandle, HWND_TOP);
+        }
+
+        public void UpdateTitle(IntPtr windowHandle, string appWindowTitle)
+        {
+            UnSafeMethods.SetWindowText(windowHandle, appWindowTitle);
         }
 
         private void SetWindow(IntPtr windowHandle, IntPtr windowState)
         {
-            SetWindowPos(windowHandle, windowState, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            UnSafeMethods.SetWindowPos(windowHandle, windowState, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+        }
+
+        public IEnumerable<MyProcess> GetProcesses()
+        {
+            var processes = Process.GetProcesses();
+            List<MyProcess> lalista = new List<MyProcess>();
+
+            UnSafeMethods.EnumWindows((a, b) =>
+                {
+                    if (UnSafeMethods.IsWindowVisible(a))
+                    {
+                        var stringBuilder = new StringBuilder(255);
+                        UnSafeMethods.GetWindowText(a, stringBuilder, stringBuilder.Capacity);
+                        string processWindowTitle = stringBuilder.ToString();
+                        
+                        if (!string.IsNullOrEmpty(processWindowTitle))
+                        {
+                            lalista.Add(new MyProcess(processWindowTitle, (IntPtr)a));
+                        }
+                    }
+                    return true;
+                }, 0);
+
+            return lalista;
+
+            //foreach (var process in processes.Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)))
+            //{
+            //    foreach (ProcessThread thread in process.Threads)
+            //    {
+            //    }
+
+            //    yield return new MyProcess(process.MainWindowTitle, process.MainWindowHandle);
+            //}
         }
     }
 }

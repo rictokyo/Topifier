@@ -24,6 +24,6 @@ namespace Topifier
             }
         }
 
-        public MyProcess SelectedProcess { get { return myProcess; } set { throw new NotImplementedException(); } }
+        public MyProcess? SelectedProcess { get { return myProcess; } set { throw new NotImplementedException(); } }
     }
 }

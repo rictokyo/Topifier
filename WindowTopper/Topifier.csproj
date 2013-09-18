@@ -81,6 +81,7 @@
     <Compile Include="IMainWindowViewModel.cs" />
     <Compile Include="IWindowHandler.cs" />
     <Compile Include="MyProcess.cs" />
+    <Compile Include="SpecialTextBox.cs" />
     <Compile Include="WindowHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

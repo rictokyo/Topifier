@@ -129,4 +129,7 @@
   <data name="SetUnTop" xml:space="preserve">
     <value>Un-Topify</value>
   </data>
+  <data name="UpdateTitle" xml:space="preserve">
+    <value>Rename</value>
+  </data>
 </root>

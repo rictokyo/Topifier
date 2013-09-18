@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 
@@ -8,11 +9,12 @@ namespace Topifier
     {
         private string _appWindowTitle;
         private IEnumerable<MyProcess> _processList;
-        private MyProcess _selectedProcess;
+        private MyProcess? _selectedProcess;
         private ICommand _refreshProcessListCommand;
         private ICommand _setOnTopCommand;
         private ICommand _setOffTopCommand;
         private ICommand _bringToFrontCommand;
+        private ICommand _updateTitleCommand;
 
         public MainWindowViewModel(IWindowHandler windowHandler)
         {
@@ -22,6 +24,17 @@ namespace Topifier
             SetOnTopCommand = new DelegateCommand(SetOnTop);
             SetOffTopCommand = new DelegateCommand(SetOffTop);
             BringToFrontCommand = new DelegateCommand(BringToFront);
+            UpdateTitleCommand = new DelegateCommand(UpdateTitle);
+        }
+
+        private void UpdateTitle()
+        {
+            if (this.Handler != null)
+            {
+                var selectedProcess = this.SelectedProcess;
+                if (selectedProcess != null)
+                    this.Handler.UpdateTitle(selectedProcess.Value.ProcessHandle, AppWindowTitle);
+            }
         }
 
         public ICommand BringToFrontCommand
@@ -29,12 +42,19 @@ namespace Topifier
             get { return _bringToFrontCommand; }
             set { _bringToFrontCommand = value; OnPropertyChanged(); }
         }
+        
+        public ICommand UpdateTitleCommand
+        {
+            get { return _updateTitleCommand; }
+            set { _updateTitleCommand = value; OnPropertyChanged(); }
+        }
 
         private void SetOnTop()
         {
             if (this.Handler != null)
             {
-                this.Handler.SetOnTop(this.SelectedProcess.ProcessHandle);
+                var selectedProcess = this.SelectedProcess;
+                if (selectedProcess != null) this.Handler.SetOnTop(selectedProcess.Value.ProcessHandle);
             }
         }
 
@@ -42,7 +62,8 @@ namespace Topifier
         {
             if (this.Handler != null)
             {
-                this.Handler.BringToFront(this.SelectedProcess.ProcessHandle);
+                var selectedProcess = this.SelectedProcess;
+                if (selectedProcess != null) this.Handler.BringToFront(selectedProcess.Value.ProcessHandle);
             }
         }
 
@@ -50,7 +71,8 @@ namespace Topifier
         {
             if (this.Handler != null)
             {
-                this.Handler.SetOffTop(this.SelectedProcess.ProcessHandle);
+                var selectedProcess = this.SelectedProcess;
+                if (selectedProcess != null) this.Handler.SetOffTop(selectedProcess.Value.ProcessHandle);
             }
         }
 
@@ -59,6 +81,7 @@ namespace Topifier
             if (this.Handler != null)
             {
                 ProcessList = this.Handler.GetProcesses();
+               // if (ProcessList != null) SelectedProcess = ProcessList.FirstOrDefault();
             }
         }
 
@@ -86,7 +109,7 @@ namespace Topifier
             set { _processList = value; OnPropertyChanged(); }
         }
 
-        public MyProcess SelectedProcess
+        public MyProcess? SelectedProcess
         {
             get
             {
@@ -95,7 +118,7 @@ namespace Topifier
             set
             {
                 _selectedProcess = value;
-                AppWindowTitle = _selectedProcess.ProcessWindowTitle;
+                if (_selectedProcess != null) AppWindowTitle = _selectedProcess.Value.ProcessWindowTitle;
 
                 OnPropertyChanged();
             }

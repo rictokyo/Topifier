@@ -6,6 +6,6 @@ namespace Topifier
     {
         string AppWindowTitle { get; set; }
         IEnumerable<MyProcess> ProcessList { get; }
-        MyProcess SelectedProcess { get; set; }
+        MyProcess? SelectedProcess { get; set; }
     }
 }
