@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
+using Topifier.Properties;
 
 namespace Topifier
 {
@@ -84,7 +85,7 @@ namespace Topifier
             }
             catch (Exception)
             {
-                return null;
+                return new Bitmap("maka.bmp");
             }
         }
     }
